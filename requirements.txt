@@ -1,0 +1,2 @@
+# Add your Python dependencies for Layer 3 Tools here
+# requests==2.31.0
