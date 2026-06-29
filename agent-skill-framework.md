@@ -23,7 +23,20 @@ my-agent-plugin/
             └── script_b.py
 ```
 
-## 2. The Master Orchestrator (Root `SKILL.md`)
+## 2. Planning Methodology (Anthropic Framework)
+Before writing any code or executing tasks, the agent MUST propose a plan broken down into strict phases. This prevents hallucination and ensures deterministic execution.
+
+- **1. Discovery Phase:** The agent analyzes the requirements and proposes all needed sub-skills. For each sub-skill, it MUST clearly define:
+  - **Input:** What data/format goes into the phase.
+  - **Output:** What data/format comes out of the phase.
+  - **Tools Needed:** The specific compute tools required (specify if they exist or need to be developed).
+  - *Outcome:* A complete blueprint for the next phase.
+- **2. Delivery Phase:** The execution of the blueprint.
+  - **First Step:** Setup fundamentals, folder structures, and environments.
+  - **Later Steps:** Developing and executing each of the composable sub-skills according to the blueprint.
+- **Core Principle:** The agent MUST focus on creating or using compute tools (deterministic logic) rather than relying on the LLM to process data, calculate, or hallucinate logic.
+
+## 3. The Master Orchestrator (Root `SKILL.md`)
 The root `SKILL.md` does **not** do the actual computing work. Instead, it acts as a "Master Orchestrator" or traffic controller. It dictates exactly *when* to trigger sub-skills and defines strict "Gates" to prevent hallucination.
 
 **Key Components:**
@@ -33,7 +46,7 @@ The root `SKILL.md` does **not** do the actual computing work. Instead, it acts 
 - **Goal**: What is the expected output? (e.g., "`output.json`")
 - **Verification Gates (🛑)**: Explicit rules the agent MUST check before proceeding. If the goal isn't met, the agent must halt and not proceed to the next phase.
 
-## 3. Sub-Skills as "Execution Playbooks"
+## 4. Sub-Skills as "Execution Playbooks"
 Sub-skills live in `skills/<name>/SKILL.md`. They must be structured as strict, deterministic **Playbooks** rather than vague instructions.
 
 **Standard Playbook Sections:**
@@ -44,12 +57,12 @@ Sub-skills live in `skills/<name>/SKILL.md`. They must be structured as strict, 
 3. **Semantic Validation**: Tell the agent how to evaluate the output of the compute tool. (e.g., "Check if the JSON contains `"status": "success"`).
 4. **Final Handover**: Instruct the agent to summarize its work and explicitly hand control back to the Master Orchestrator for the next phase.
 
-## 4. Layer 3 Tools (`tools/`)
+## 5. Layer 3 Tools (`tools/`)
 The AI should not be relied upon to perform complex math, parse ASTs, or do heavy data lifting. This logic belongs in Layer 3 Tools.
 - Tools should be deterministic code (e.g., Python).
 - Tools should output structured, readable data (like JSON or Markdown) so the agent can easily parse the result in the "Validation" step.
 
-## 5. Anti-Patterns to Avoid
+## 6. Anti-Patterns to Avoid
 - ❌ **Buried Orchestrator**: Do not place the master orchestration `SKILL.md` inside a sub-directory. It must sit at the root.
 - ❌ **Hardcoded Filenames**: Do not design tools to look for `data123.csv`. Instead, use patterns like "read all `.csv` files in the `./inbox/` folder".
 - ❌ **Scripts Directory**: Do not place python files in a `scripts/` folder; use `tools/`.

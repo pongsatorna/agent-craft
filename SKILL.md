@@ -7,13 +7,16 @@ description: The master orchestrator for this plugin. It routes to appropriate s
 
 This is the root `SKILL.md` acting as the Master Orchestrator. It dictates exactly *when* to trigger sub-skills and defines strict "Gates" to prevent hallucination.
 
-## Phase 1: Example Initialization
+## Discovery Phase Blueprint
+*(This section is generated during planning to outline inputs, outputs, and tools before execution begins).*
 
-**Condition:** User requests to run the example process.
+## Delivery Phase 1: Setup and Fundamentals
+**Goal:** Initialize the environment and required folder structures.
+**Verification Gate (🛑):** Check that the directories exist before proceeding.
+
+## Delivery Phase 2: Example Composable Skill
+**Input:** Raw user request string.
+**Output:** Processed JSON output.
+**Tools Needed:** `example.py` (Existing compute tool to be executed).
 **Action:** Invoke `example-skill` to execute the playbook.
-**Goal:** Successfully run the example tool and generate an output.
-**Verification Gate (🛑):** Check that the output from the tool indicates success before proceeding to the next phase.
-
-## Phase 2: Next Steps
-
-*(Define subsequent phases here as needed)*
+**Verification Gate (🛑):** Check that the JSON output indicates success.
