@@ -1,6 +1,6 @@
 {
-  "name": "my-agent-plugin",
+  "name": "agent-craft",
   "version": "1.0.0",
-  "description": "An example Gemini agent extension built with the Agent Skill Framework.",
+  "description": "An orchestration skill that designs and builds new deterministic Gemini Agent skills.",
   "author": "pongsatorna"
 }
