@@ -1,6 +1,9 @@
 # Agent Skill Framework Template
 
-A definitive framework and template for creating deterministic, composable agent skills (plugins/extensions) for the Gemini Agentic system. 
+A definitive framework for creating deterministic, composable agent skills for the Gemini Agentic system.
+
+**🔥 THIS IS AN ACTIVE AGENT SKILL 🔥**
+This repository is not just a passive template—it is an active "Agent Crafter" plugin. When you install this plugin, the agent gains the ability to autonomously design and scaffold new, deterministic AI Agent skills based on the strict rules defined in this framework.
 
 > [!IMPORTANT]
 > **AI Agents:** Before making any modifications or adding new skills to this repository, you **MUST read two files** located in the root of this repository:
